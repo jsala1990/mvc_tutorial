@@ -17,4 +17,9 @@ describe("Configuration setup", function(){
     expect(config.port).toBe(5000);
     next();
   });
+  it("should load mongodb configurations", function(next){
+    var config = require('../config')('');
+    expect(config.mongo.port).toBe(27017);
+    next();
+  });
 });
