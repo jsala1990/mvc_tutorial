@@ -20,6 +20,7 @@ describe("Configuration setup", function(){
   it("should load mongodb configurations", function(next){
     var config = require('../config')('');
     expect(config.mongo.port).toBe(27017);
+    expect(config.mongo.host).toBe('127.0.0.1');
     next();
   });
 });

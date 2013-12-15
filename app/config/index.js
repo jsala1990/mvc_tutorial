@@ -3,21 +3,24 @@ var config = {
     mode: 'local',
     port: 3000,
     mongo: {
-      port: 27017
+      port: 27017,
+      host: '127.0.0.1'
     }
   },
   staging: {
     mode: 'staging',
     port: 4000,
     mongo: {
-      port: 27017
+      port: 27017,
+      host: '127.0.0.1'
     }
   }, 
   production: {
     mode: 'production',
     port: 5000,
     mongo: {
-      port: 27017
+      port: 27017,
+      host: '127.0.0.1'
     }
   }
 }
