@@ -4,8 +4,8 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
+var controllers = require('./controllers');
+var user = require('./controllers/user');
 var http = require('http');
 var path = require('path');
 var config = require('./config')();
@@ -17,7 +17,7 @@ var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'templates'));
 app.set('view engine', 'hjs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -35,13 +35,13 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/', controllers.index);
 app.get('/users', user.list);
 
 MongoClient.connect('mongodb://'+ config.mongo.host + ':' + config.mongo.port + '/fastdelivery', function(err, db){
 	// if(err) throw err;
 	if(err) {
-		console.log('Sorry, there is no mongo db server running');
+		console.log('Sorry, there is no mongo db server running at: ' + 'mongodb://'+ config.mongo.host + ':' + config.mongo.port + '/fastdelivery');
 	} else {
 	var attachDB = function(req, res, next){
 		req.db = db;
